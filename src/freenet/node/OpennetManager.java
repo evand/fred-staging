@@ -132,9 +132,9 @@ public class OpennetManager {
 	/** Enable scaling of peers with bandwidth? */
 	public static final boolean ENABLE_PEERS_PER_KB_OUTPUT = true;
 	/** Constant for scaling peers: we multiply bandwidth in kB/sec by this
-	 * and then take the square root. 12 gives 11 at 10K, 15 at 20K, 19 at
-	 * 30K, 26 at 60K, 34 at 100K, 40 at 140K. */
-	public static final double SCALING_CONSTANT = 12.0;
+	 * and then take the square root. 6.0 gives 8 at 10K (actually 10 because of minimum),
+	 * 11 at 20K, 13 at 30K, 19 at 60K, 24 at 100K, 29 at 140K, 35 at 200K, 40 at 270K */
+	public static final double SCALING_CONSTANT = 6.0;
 	/** Minimum number of peers */
 	public static final int MIN_PEERS_FOR_SCALING = 10;
 	/** Maximum number of peers. */
