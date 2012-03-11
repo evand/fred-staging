@@ -1172,15 +1172,12 @@ public class QueueToadlet extends Toadlet implements RequestCompletionCallback, 
 
 	protected String makeFetchKeysList(ClientContext context) throws DatabaseDisabledException {
 		RequestStatus[] reqs = fcp.getGlobalRequests();
-
 		StringBuffer sb = new StringBuffer();
 
 		for(int i=0;i<reqs.length;i++) {
 			RequestStatus req = reqs[i];
-			if(req instanceof DownloadRequestStatus) {
-				DownloadRequestStatus get = (DownloadRequestStatus)req;
-				FreenetURI uri = get.getURI();
-				sb.append(uri.toString());
+			if((!uploads && (req instanceof DownloadRequestStatus)) || (uploads && (req instanceof UploadRequestStatus))) {
+				sb.append(req.getURI().toString());
 				sb.append("\n");
 			}
 		}
