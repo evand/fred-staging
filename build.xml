@@ -13,7 +13,7 @@ available (possibly using *pre-built blobs*).
 
 	<import file="build-clean.xml"/>
 	<property name="contrib.ant" value="${lib.contrib.dir}/../build.xml"/>
-	<property name="get.contrib.dir" value="http://checksums.freenetproject.org/cc"/>
+	<property name="get.contrib.dir" value="https://downloads.freenetproject.org/latest"/>
 	<available property="contrib.present" file="${contrib.ant}"/>
 
 	<!-- =================================================================== -->
@@ -43,6 +43,9 @@ add "lib.contrib.dir = [path/to/repo]/dist" to override.properties, and then
 run me again. (You do not need to build freenet-ext explicitly, I will do that
 automatically; however you need ant-contrib installed for that to work.)
 
+Or you can manually put the jar in lib/freenet/freenet-ext.jar, if you want to
+use an "official" version you have downloaded already.
+
 For more options on how to tune the build process, see build.properties.
 		</echo>
 		<fail message="either set lib.contrib.get or lib.contrib.dir" />
@@ -55,8 +58,6 @@ For more options on how to tune the build process, see build.properties.
 		  usetimestamp="true" verbose="true"/>
 		<checksum file="${lib.contrib.dir}/freenet-ext.jar" algorithm="sha1" pattern="{0} {1}"
 		  verifyproperty="get.contrib.pass"/>
-		<!-- this is only to make sure the download wasn't interrupted, which fools timestamp detection. -->
-		<!-- it has no security properties whatsoever. -->
 		<fail unless="${get.contrib.pass}" message="checksum mismatch; please delete the files and try again"/>
 	</target>
 
